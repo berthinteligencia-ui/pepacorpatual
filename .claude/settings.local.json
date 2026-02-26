@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -la \"c:\\\\Users\\\\flord\\\\OneDrive\\\\Documentos\\\\PROJETOS\\\\folhapro\\\\.agent\\\\skills\\\\plan-writing\"\" 2>&1 || ls -la \"/c/Users/flord/OneDrive/Documentos/PROJETOS/folhapro/.agent/skills/plan-writing/ \")"
+    ]
+  }
+}
