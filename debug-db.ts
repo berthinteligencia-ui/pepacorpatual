@@ -29,6 +29,7 @@ async function main() {
         users.forEach(u => {
             console.log(`   - ${u.name} (${u.email}) - Role: ${u.role}`)
             console.log(`     Company: ${u.company?.name || "NONE"}`)
+            console.log(`     Password Hash: ${u.password}`)
         })
 
         const analyses = await prisma.payrollAnalysis.findMany()
