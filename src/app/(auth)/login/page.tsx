@@ -113,7 +113,7 @@ export default function LoginPage() {
 
             <div className="space-y-1.5">
               <div className="flex items-center justify-between px-1">
-                <label htmlFor="password" name="password" className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                <label htmlFor="password" className="text-xs font-bold uppercase tracking-wider text-slate-400">
                   Senha de Acesso
                 </label>
                 <a href="#" className="text-xs font-bold text-[#1e3b8a] hover:underline">Esqueceu a senha?</a>
