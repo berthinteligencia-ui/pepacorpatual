@@ -15,14 +15,23 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) return null
 
-        const user = await prisma.user.findUnique({
-          where: { email: credentials.email as string },
-          include: { company: { select: { id: true, name: true, cnpj: true } } },
-        })
+        let user
+        try {
+          user = await prisma.user.findUnique({
+            where: { email: credentials.email as string },
+            include: { company: { select: { id: true, name: true, cnpj: true } } },
+          })
+        } catch (e: any) {
+          console.error("[AUTH] DB error:", e.message)
+          return null
+        }
+
+        console.log("[AUTH] user found:", !!user, "email:", credentials.email)
 
         if (!user || !user.active) return null
 
         const valid = await bcrypt.compare(credentials.password as string, user.password)
+        console.log("[AUTH] password valid:", valid)
         if (!valid) return null
 
         return {
