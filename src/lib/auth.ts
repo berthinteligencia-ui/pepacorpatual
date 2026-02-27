@@ -15,6 +15,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) return null
 
+        console.error("[AUTH] DATABASE_URL:", process.env.DATABASE_URL?.substring(0, 80))
+
         let user
         try {
           user = await prisma.user.findUnique({
