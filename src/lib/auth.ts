@@ -4,7 +4,9 @@ import { authConfig } from "@/lib/auth.config"
 import { prisma } from "@/lib/prisma"
 import bcrypt from "bcryptjs"
 
-export const { handlers, signIn, signOut, auth } = NextAuth({
+// Lazy config: process.env é lido em cada request (não na inicialização do módulo),
+// garantindo que AUTH_SECRET esteja disponível quando o Next.js já carregou o .env
+export const { handlers, signIn, signOut, auth } = NextAuth(() => ({
   ...authConfig,
   secret: process.env.AUTH_SECRET,
   providers: [
@@ -49,4 +51,4 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
     }),
   ],
-})
+}))
