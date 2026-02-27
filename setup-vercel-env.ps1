@@ -2,8 +2,9 @@
 # Certifique-se de estar logado na Vercel (npx vercel login) antes de rodar.
 
 $envVars = @{
-    "DATABASE_URL" = "postgresql://postgres:QOVQieiMhyfOZ1vJ@db.wbfchuvzwnzajjjrzjym.supabase.co:5432/postgres"
-    "AUTH_SECRET" = "MRFTTJmXfMTfAjiqDtCuO5Vj3Z+coXbX7ytDeJbj538="
+    "DATABASE_URL"    = "postgresql://postgres:lo1Tlz0*xy_so@db.wbfchuvzwnzajjjrzjym.supabase.co:5432/postgres"
+    "AUTH_SECRET"     = "MRFTTJmXfMTfAjiqDtCuO5Vj3Z+coXbX7ytDeJbj538="
+    "NEXTAUTH_SECRET" = "MRFTTJmXfMTfAjiqDtCuO5Vj3Z+coXbX7ytDeJbj538="
     "AUTH_TRUST_HOST" = "true"
 }
 
