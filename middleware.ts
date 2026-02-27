@@ -2,7 +2,7 @@ import NextAuth from "next-auth"
 import { authConfig } from "@/lib/auth.config"
 import { NextResponse } from "next/server"
 
-const { auth } = NextAuth(authConfig)
+const { auth } = NextAuth({ ...authConfig, secret: process.env.AUTH_SECRET })
 
 const PUBLIC_PATHS = ["/login", "/preview-dashboard"]
 
