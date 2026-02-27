@@ -100,7 +100,44 @@ async function main() {
       departmentId: emp.departmentId,
     })),
   })
+  // ── Sample Payroll Analyses ───────────────────────────────────────────────
+  const now = new Date()
+  const currentMonth = now.getMonth() + 1
+  const currentYear = now.getFullYear()
+
+  // Generate for current and previous month
+  const periods = [
+    { month: currentMonth, year: currentYear },
+    { month: currentMonth === 1 ? 12 : currentMonth - 1, year: currentMonth === 1 ? currentYear - 1 : currentYear }
+  ]
+
+  for (const period of periods) {
+    for (const dept of departments) {
+      await prisma.payrollAnalysis.upsert({
+        where: {
+          month_year_unit_company: {
+            month: period.month,
+            year: period.year,
+            departmentId: dept.id,
+            companyId: company.id
+          }
+        },
+        update: {},
+        create: {
+          month: period.month,
+          year: period.year,
+          departmentId: dept.id,
+          companyId: company.id,
+          total: (Math.random() * 50000 + 10000).toFixed(2),
+          status: "OPEN",
+          data: { found: 10, missing: 0, extras: 0, sheetSummary: {} }
+        }
+      })
+    }
+  }
+
   console.log(`✔ Employees: ${employees.map((e) => e.name).join(", ")}`)
+  console.log(`✔ Payroll Analyses: Generated for ${periods.length} periods`)
 
   console.log("\n✅ Seed concluído com sucesso!")
   console.log("   Login: admin@folhapro.com")
